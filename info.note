@@ -1,0 +1,14 @@
+const [tags, setTags] = useState(["happy", "exciting"]);
+
+
+const handleClick = () => {
+//For add
+setTags ({...tags, "Cheerful"}) 
+
+//For remove
+setTags ({tags.filter(tag => tags !== "Happy")}) in yani hame b qeyre happy
+
+//For update
+setTags (tags.map(tag => tag === 'happy' ? 'happiness' : tag))
+}
+
