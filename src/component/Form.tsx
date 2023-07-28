@@ -1,26 +1,14 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import React, { FormEvent, useRef, useState } from "react";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form"; //How to make form with react hook library
 
 const Form = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const onSubmit = (data: FieldValues) => console.log(data);
 
-  //   const nameRef = useRef<HTMLInputElement>(null); // For Name
-  //   const ageRef = useRef<HTMLInputElement>(null); // For Age
-  //   const person = { name: "", age: 0 };
-  //   const [person, setPerson] = useState({
-  //     name: "",
-  //     age: 0,
-  //   });
-
-  //   const handleSubmit = (event: FormEvent) => {
-  // if (nameRef.current !== null) person.name = nameRef.current.value; // Handling Form submission for Name
-  // if (ageRef.current !== null) person.age = parseInt(ageRef.current.value); // Handling Form submission for Age ????? ParseInt
-
-  // event.preventDefault(); // For useState
-  // console.log(person);
-  //   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-3">
@@ -28,15 +16,15 @@ const Form = () => {
           <strong>Name</strong>
         </label>
         <input
-          {...register("name")}
-          //   onChange={(event) =>
-          //     setPerson({ ...person, name: event.target.value })
-          //   }
-          //   value={person.name}
+          {...register("name", { required: true, minLength: 4 })}
           id="name"
           type="text"
           className="form-control"
         />
+        {errors.name?.type === "required" && <p className="text-danger">The name field is required</p>}
+        {errors.name?.type === "minLength" && (
+          <p className="text-danger">The name must be at least 3 characters</p>
+        )}
       </div>
       <div className="mb-3">
         <label htmlFor="age" className="form-label">
@@ -44,10 +32,6 @@ const Form = () => {
         </label>
         <input
           {...register("age")}
-          //   onChange={(event) =>
-          //     setPerson({ ...person, age: parseInt(event.target.value) })
-          //   }
-          //   value={person.age}
           id="age"
           type="number"
           className="form-control"
