@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Expense {
   id: number;
   description: string;
@@ -12,7 +10,7 @@ interface Props {
   onDelete: (id: number) => void;
 }
 const ExpendList = ({ expenses, onDelete }: Props) => {
-  if (expenses.length === 0) return null; // For when we don't have any choise the table will be qeyb mishe
+  if (expenses.length === 0) return null; // For when we don't have any choises the table will be qeyb mishe
 
   return (
     <table className="table table-bordered">
@@ -25,15 +23,15 @@ const ExpendList = ({ expenses, onDelete }: Props) => {
         </tr>
       </thead>
       <tbody>
-        {expenses.map((expense) => (
-          <tr key={expense.id}>
-            <td>{expense.description}</td>
-            <td>{expense.amount}</td>
-            <td>{expense.category}</td>
+        {expenses.map((Expense) => (
+          <tr key={Expense.id}>
+            <td>{Expense.description}</td>
+            <td>{Expense.amount}</td>
+            <td>{Expense.category}</td>
             <td>
               <button
                 className="btn btn-outline-danger"
-                onClick={() => onDelete(expense.id)}
+                onClick={() => onDelete(Expense.id)}
               >
                 Delete
               </button>
@@ -47,7 +45,7 @@ const ExpendList = ({ expenses, onDelete }: Props) => {
           <td>
             $
             {expenses
-              .reduce((acc, expense) => expense.amount + acc, 0)
+              .reduce((acc, Expense) => Expense.amount + acc, 0)
               .toFixed(2)}
           </td>
           <td></td>

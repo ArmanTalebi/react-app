@@ -13,7 +13,7 @@ import Like from "./component/Like/Like";
 import ExpendList from "./expense-tracker/components/ExpendList";
 import ExpenseFilter from "./expense-tracker/components/ExpenseFilter";
 import ExpenseForm from "./expense-tracker/components/ExpenseForm";
-import categories from "./expense-tracker/categories";
+// import categories from "./expense-tracker/categories";
 
 function App() {
   const [selectCategory, setSelectCategory] = useState("");
@@ -98,6 +98,7 @@ function App() {
   };
 
   const [alertVisible, setAlertVisibility] = react.useState(false);
+
   return (
     <div>
       <Message1 />
@@ -113,7 +114,7 @@ function App() {
         </Alert>
       )}
       <Button color="primary" onClick={() => setAlertVisibility(true)}>
-        Button
+        Click On It
       </Button>
       <br />
       <br />
@@ -121,7 +122,7 @@ function App() {
       <br />
       <br />
 
-      {/* {drink.price} */}
+      {/* {{drink.price}} */}
 
       {bugs.map((bug) => (
         <p key={bug.id}>
@@ -142,7 +143,11 @@ function App() {
       <br />
       <br />
       <div className="mb-5">
-        <ExpenseForm onSubmit={(expense) => setExpenses([...expenses, { ...expense, id: expenses.length + 1}])} />
+        <ExpenseForm
+          onSubmit={(expense) =>
+            setExpenses([...expenses, { ...expense, id: expenses.length + 1 }])
+          }
+        />
       </div>
       <div className="mb-3">
         <ExpenseFilter

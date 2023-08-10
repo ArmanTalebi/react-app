@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { FieldValues, useForm } from "react-hook-form"; //How to make form with react hook library
-import { z } from "zod";
+import { z } from "zod"; //  for changes and and integrate our forms
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
-  name: z.string().min(3 /*{message: "Name must be at least 5 characters"} */), // just for adding privately
+  name: z.string().min(5 /*{message: "Name must be at least 5 characters"} */), // just for adding privately
   age: z.number({ invalid_type_error: "Age field is required." }).min(18),
 });
 
@@ -25,7 +25,7 @@ const Form = () => {
           <strong>Name</strong>
         </label>
         <input
-          {...register("name" /*, { required: true, minLength: 4 } */)}
+          {...register("name", { required: true, minLength: 4 })}
           id="name"
           type="text"
           className="form-control"

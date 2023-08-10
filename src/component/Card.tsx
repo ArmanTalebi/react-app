@@ -1,5 +1,3 @@
-
-
 interface Props {
   cardItems: string[];
   onClear: () => void;
@@ -14,7 +12,9 @@ const Card = ({ cardItems, onClear }: Props) => {
           <li key={item}>{item}</li>
         ))}
       </ul>
-      <button onClick={onClear}>Clear</button>
+      <button className="btn btn-secondary" onClick={onClear}>
+        Clear
+      </button>
     </>
   );
 };

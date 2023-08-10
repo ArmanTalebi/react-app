@@ -12,3 +12,17 @@ setTags ({tags.filter(tag => tags !== "Happy")}) in yani hame b qeyre happy
 setTags (tags.map(tag => tag === 'happy' ? 'happiness' : tag))
 }
 
+
+
+Optimistic Update  /* I prefer this to use */
+{
+    update the ui
+    call the server
+}
+
+
+Pessimistic Update
+{
+    call the server
+    update the ui
+}

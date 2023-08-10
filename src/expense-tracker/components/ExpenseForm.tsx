@@ -9,7 +9,7 @@ interface Props {
 
 const schema = z.object({
   description: z
-    .string()
+    .string({ invalid_type_error: "Required" })
     .min(3, { message: "description should be at least 20 characters" })
     .max(50),
   amount: z
@@ -35,7 +35,7 @@ const ExpenseForm = ({ onSubmit }: Props) => {
     <form
       onSubmit={handleSubmit((data) => {
         onSubmit(data);
-        reset(); // this use for reset the fields that we have filled last
+        reset(data); // this use for reset the fields that we have filled last
       })}
     >
       <div className="mb-3">
@@ -71,7 +71,7 @@ const ExpenseForm = ({ onSubmit }: Props) => {
           Categories
         </label>
         <select {...register("category")} id="category" className="form-select">
-          <option value=""></option>
+          <option value="">Select</option>
           {categories.map((category) => (
             <option key={category} value={category}>
               {category}
@@ -83,6 +83,9 @@ const ExpenseForm = ({ onSubmit }: Props) => {
           <p className="text-danger">{errors.category.message}</p>
         )}
       </div>
+      <button className="btn btn-info me-2" type="reset">
+        Reset
+      </button>
       <button className="btn btn-info" type="submit">
         Submit
       </button>
